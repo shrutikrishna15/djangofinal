@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block head%}
+    <title> Base </title>
+    {% endblock %}
+</head>
+<body>
+<br>
+<div class="container">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Blog </a>
+        </div>
+
+
+{% if user.is_authenticated %}
+ <ul class="nav navbar-nav">
+
+     <li><a href="/home">Home</a></li>
+
+     <li><a href="/accounts/logout">logout</a></li>
+     <li><a href="/accounts/profile">profile</a></li>
+     <li><a href="/accounts/profile/edit">Edit profile</a></li>
+     <li><a href="/accounts/change-password">Change Password</a></li>
+
+ </ul>
+      {% else %}
+      <ul class="nav navbar-nav" >
+
+      </ul>
+       <ul class="nav navbar-nav navbar-right" >
+           <li><a href="/accounts/login">login</a></li>
+           <li> <a href="/accounts/register">Register</a></li>
+       </ul>
+      {% endif %}
+
+
+</nav>
+    </div>
+
+{% block body%}
+<h1> Base </h1>
+{% endblock%}
+
+
+
+</body>
+
+</html>
