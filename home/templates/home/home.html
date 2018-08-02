@@ -1,5 +1,4 @@
-
-{% extends 'base.html' %}
+{% extends 'base.html'%}
 
 {% block body %}
 <div class="container">
@@ -13,21 +12,33 @@
         </form>
         <h2>{{ text }}</h2>
         {% for post in posts %}
-            <h1>{{ post.post }}</h1>
-            <p>Posted by {{ post.user }} on {{ post.created }}</p>
-        {% endfor %}
-    </div>
-     <div class="col-md-4">
-        <h2>Other People</h2>
-
-         {% for user in users %}
-            <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
-                <h3>{{ user.username }}</h3>
+        <h1> {{ post.post }} </h1>
             </a>
-
+            <p>Posted by {{ post.user }} on {{ post.created }}</p>
+            <a href = "/home/comment/"> Comment </a>
         {% endfor %}
-
     </div>
+
+{% for comment in comments %}
+  <div class="comment">
+      <div class="date">{{ comment.created_date }}</div>
+      <strong>{{ comment.author }}</strong>
+      <p>{{ comment.text|linebreaks }}</p>
+      <p> enter your comments </P>
+  </div>
+{% empty %}
+  <p>No comments here yet :(</p>
+{% endfor %}
+
+<div class="col-md-4">
+  <h2>Friends</h2>
+      {% for user in users %}
+      <a href="{% url 'accounts:view_profile_with_pk' pk=user.pk %}">
+      <h3>{{ user.username }}</h3>
+      /a>
+     {% endfor %}
+
+</div>
 </div>
 
 {% endblock %}
